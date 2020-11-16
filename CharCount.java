@@ -21,7 +21,7 @@ public class CharCount {
 
     public void map(Object key, Text value, Context context
                     ) throws IOException, InterruptedException {
-      String textVal = value.toString();
+      String textVal = value.toString().toLowerCase();
       for(int i = 0; i < textVal.length(); i+=1) {
         charTxt.set(String.valueOf(textVal.charAt(i)));
         context.write(charTxt, one);
