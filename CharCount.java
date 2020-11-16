@@ -11,20 +11,20 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-public class NumCount {
+public class CharCount {
 
   public static class TokenizerMapper
        extends Mapper<Object, Text, Text, IntWritable>{
 
     private final static IntWritable one = new IntWritable(1);
-    private Text word = new Text();
+    private Text charTxt = new Text();
 
     public void map(Object key, Text value, Context context
                     ) throws IOException, InterruptedException {
-      StringTokenizer itr = new StringTokenizer(value.toString());
-      while (itr.hasMoreTokens()) {
-        word.set(itr.nextToken());
-        context.write(word, one);
+      String textVal = value.toString();
+      for(int i = 0; i < textVal.length(); i+=1) {
+        charTxt.set(String.valueOf(textVal.charAt(i)));
+        context.write(charTxt, one);
       }
     }
   }
@@ -42,16 +42,15 @@ public class NumCount {
         sum += val.get();
       }
         result.set(sum);
-        if(key.toString().equals("and"))    {
-            context.write(key, result);
+          context.write(key, result);
         }
     }
   }
 
   public static void main(String[] args) throws Exception {
     Configuration conf = new Configuration();
-    Job job = Job.getInstance(conf, "word count");
-    job.setJarByClass(NumCount.class);
+    Job job = Job.getInstance(conf, "chars count");
+    job.setJarByClass(CharCount.class);
     job.setMapperClass(TokenizerMapper.class);
     job.setCombinerClass(IntSumReducer.class);
     job.setReducerClass(IntSumReducer.class);
