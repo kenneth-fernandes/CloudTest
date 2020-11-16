@@ -13,7 +13,7 @@ hadoop fs -mkdir -p input
 hdfs dfs -put ./input/* input
 
 # run wordcount 
-hadoop jar wc.jar NumCount input output
+hadoop jar nc.jar NumCount input output
 
 # print the input files
 echo -e "\ninput nums.txt:"
