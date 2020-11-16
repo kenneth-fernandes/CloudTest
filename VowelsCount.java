@@ -20,7 +20,7 @@ public class VowelsCount {
 
     private final static IntWritable one = new IntWritable(1);
     private Text charTxt = new Text();
-    private char[] vowels = ['a','e','i','o','u'];
+    private char[] vowels = new []{'a','e','i','o','u'};
 
     public void map(Object key, Text value, Context context
                     ) throws IOException, InterruptedException {
