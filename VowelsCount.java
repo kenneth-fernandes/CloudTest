@@ -26,7 +26,7 @@ public class VowelsCount {
                     ) throws IOException, InterruptedException {
       String textVal = value.toString().toLowerCase();
       for(int i = 0; i < textVal.length(); i+=1) {
-        for(j = 0; j < vowels.length; j+=1) {
+        for(int j = 0; j < vowels.length; j+=1) {
           if(Character.compare(vowels[j], textVal.charAt(i)) == 0) {
             charTxt.set(String.valueOf(textVal.charAt(i)));
             context.write(charTxt, one);
