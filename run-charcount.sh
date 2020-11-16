@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# test the hadoop cluster by running wordcount
+# test the hadoop cluster by running charcount
 
 # create input files 
 mkdir input
@@ -19,6 +19,6 @@ hadoop jar cc.jar CharCount input output
 echo -e "\ninput text.txt:"
 hdfs dfs -cat input/text.txt
 
-# print the output of wordcount
-echo -e "\nwordcount output:"
+# print the output of charcount
+echo -e "\ncharcount output:"
 hdfs dfs -cat output/part-r-00000
