@@ -20,14 +20,14 @@ public class VowelsCount {
 
     private final static IntWritable one = new IntWritable(1);
     private Text charTxt = new Text();
-    private char[] vowels = new []{'a','e','i','o','u'};
+    private char[] vowels = new char[]{'a','e','i','o','u'};
 
     public void map(Object key, Text value, Context context
                     ) throws IOException, InterruptedException {
       String textVal = value.toString().toLowerCase();
       for(int i = 0; i < textVal.length(); i+=1) {
         for(j = 0; j < vowels.length; j+=1) {
-          if(Character.compare(vowels[j], textVal.charAt(i) == 0) {
+          if(Character.compare(vowels[j], textVal.charAt(i)) == 0) {
             charTxt.set(String.valueOf(textVal.charAt(i)));
             context.write(charTxt, one);
             break;
