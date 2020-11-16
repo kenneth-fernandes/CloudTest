@@ -4,7 +4,7 @@
 
 # create input files 
 mkdir input
-cp text.txt input/nums.txt
+cp text.txt input/text.txt
 
 # create input directory on HDFS
 hadoop fs -mkdir -p input
@@ -13,11 +13,11 @@ hadoop fs -mkdir -p input
 hdfs dfs -put ./input/* input
 
 # run wordcount 
-hadoop jar nc.jar NumCount input output
+hadoop jar cc.jar CharCount input output
 
 # print the input files
-echo -e "\ninput nums.txt:"
-hdfs dfs -cat input/nums.txt
+echo -e "\ninput text.txt:"
+hdfs dfs -cat input/text.txt
 
 # print the output of wordcount
 echo -e "\nwordcount output:"
